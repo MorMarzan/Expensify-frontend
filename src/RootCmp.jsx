@@ -5,6 +5,7 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { AppFooter } from './cmps/AppFooter.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 import { About } from './pages/About.jsx'
+import { expenseService } from './services/expense.service.local.js'
 
 
 export function App() {
