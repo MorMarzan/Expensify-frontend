@@ -21,7 +21,7 @@ export function ExpenseIndex() {
     }
 
     return (
-        <div className="expense-index" style={{ color: 'black' }}>
+        <div className="expense-index full main-layout">
             <ExpenseList expenses={expenses} />
         </div>
     )

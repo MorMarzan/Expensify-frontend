@@ -21,6 +21,13 @@
     }
 }
 
+.grid {
+    display: grid;
+
+    &.cols {
+        grid-auto-flow: column;
+    }
+}
 
 .clean-list {
     list-style-type: none;

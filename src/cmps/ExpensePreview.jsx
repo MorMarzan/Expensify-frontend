@@ -1,10 +1,13 @@
+import { utilService } from "../services/util.service"
 
 export default function ExpensePreview({ expense }) {
+    const { amount, date, note = '', category } = expense
     return (
-        <article className='toy-preview' >
-            <h4>{expense.amount}$</h4>
-            <h4>{expense.note}</h4>
-
+        <article className='expense-preview grid'>
+            <div>{category}</div>
+            <div>{amount}$</div>
+            <div>{utilService.formatTimestamp(date)}</div>
+            {note && <div>{note}</div>}
         </article>
     )
 }

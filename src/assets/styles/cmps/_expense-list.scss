@@ -1,0 +1,8 @@
+.expense-list {
+
+    .headers {
+        grid-template-columns: repeat(4, 1fr);
+        background-color: var(--clrPrimary2);
+    }
+
+}

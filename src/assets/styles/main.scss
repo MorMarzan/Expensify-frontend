@@ -12,9 +12,12 @@
 // Views
 @import "pages/about";
 @import "pages/home-page";
+@import "pages/expense-index";
 
 // Components
 @import "cmps/app-header";
 @import "cmps/app-footer";
 @import "cmps/switch-btn";
 @import "cmps/user-msg";
+@import "cmps/expense-preview";
+@import "cmps/expense-list";
