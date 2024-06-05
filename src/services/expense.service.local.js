@@ -22,18 +22,18 @@ _createExpenses()
 
 async function query(filterBy = { date: '', category: '' }) {
     var expenses = await storageService.query(STORAGE_KEY)
-    if (filterBy.category) {
-        expenses = expenses.filter(expense => expense.category === filterBy.category)
-    }
-    if (filterBy.date) {
-        const filterDate = new Date(filterBy.date)
-        filterDate.setHours(0, 0, 0, 0)
-        expenses = expenses.filter(expense => {
-            const expenseDate = new Date(expense.date);
-            expenseDate.setHours(0, 0, 0, 0); // Set to the start of the day
-            return expenseDate.getTime() === filterDate.getTime();
-        })
-    }
+    // if (filterBy.category) {
+    //     expenses = expenses.filter(expense => expense.category === filterBy.category)
+    // }
+    // if (filterBy.date) {
+    //     const filterDate = new Date(filterBy.date)
+    //     filterDate.setHours(0, 0, 0, 0)
+    //     expenses = expenses.filter(expense => {
+    //         const expenseDate = new Date(expense.date);
+    //         expenseDate.setHours(0, 0, 0, 0); // Set to the start of the day
+    //         return expenseDate.getTime() === filterDate.getTime();
+    //     })
+    // }
     return expenses
 }
 
@@ -50,6 +50,7 @@ async function save(expense) {
     if (expense._id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
+        console.log('service', expense)
         // Later, owner is set by the backend
         // expense.owner = userService.getLoggedinUser()
         savedExpense = await storageService.post(STORAGE_KEY, expense)

@@ -10,7 +10,8 @@ import { Link, Outlet } from "react-router-dom"
 
 export function ExpenseIndex() {
 
-    const expenses = useSelector(storeState => storeState.expenseModule.expenses)
+    const expenses = useSelector(storeState => storeState.expenseModule.filteredExpenses)
+    const fullExpenses = useSelector(storeState => storeState.expenseModule.expenses)
     const filterBy = useSelector(storeState => storeState.expenseModule.filterBy)
     const [expenseCategoryMap, setExpenseCategoryMap] = useState({})
 
@@ -19,8 +20,9 @@ export function ExpenseIndex() {
     }, [filterBy])
 
     useEffect(() => {
-        _getExpenseCategoryMap()
-    }, [])
+        const map = getExpenseCategoryMap()
+        setExpenseCategoryMap(map)
+    }, [fullExpenses])
 
     async function _loadExpenses() {
         try {
@@ -41,15 +43,15 @@ export function ExpenseIndex() {
         }
     }
 
-    async function _getExpenseCategoryMap() {
-        try {
-            const map = await getExpenseCategoryMap()
-            setExpenseCategoryMap(map)
-        } catch (error) {
-            console.error('Error loading expenses:', error)
-            showErrorMsg('Cannot show expenses')
-        }
-    }
+    // async function _getExpenseCategoryMap() {
+    //     try {
+    //         const map = await getExpenseCategoryMap()
+    //         setExpenseCategoryMap(map)
+    //     } catch (error) {
+    //         console.error('Error loading expenses:', error)
+    //         showErrorMsg('Cannot show expenses')
+    //     }
+    // }
 
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
