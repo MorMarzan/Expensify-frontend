@@ -1,0 +1,33 @@
+.user-msg {
+    // padding: .2em .5em;
+    // position: fixed;
+    // bottom: 1em;
+    // right: 50%;
+    // translate: 50%;
+    // border-radius: 5px;
+    // font-size: em(20px, 15px);
+    // border: 2px solid rgba(0, 0, 0, 0.368);
+    position: fixed;
+    left: 50%;
+    top: -100px;
+    transform: translate(-50%, 50%);
+    z-index: 10;
+    transition: top 0.5s ease;
+
+    padding: 6px 12px;
+
+    &.shown {
+        top: 10px;
+    }
+
+    &.success {
+        background-color: var(--clrSecondary1);
+        color: var(--clrPrimary3);
+    }
+
+    &.error {
+        background-color: #F67E7E;
+        color: black;
+    }
+
+}

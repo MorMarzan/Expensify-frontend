@@ -7,24 +7,29 @@ import { HomePage } from './pages/HomePage.jsx'
 import { About } from './pages/About.jsx'
 import { ExpenseIndex } from './pages/ExpenseIndex.jsx'
 import { store } from './store/store.js'
+import { Provider } from 'react-redux'
+import { UserMsg } from './cmps/UserMsg.jsx'
 
 
 export function App() {
 
   return (
-    <Router>
-      <section className="main-layout full app">
-        <AppHeader />
-        <main className="main-layout full app">
-          <Routes>
-            <Route element={<HomePage />} path="/" />
-            <Route element={<ExpenseIndex />} path="/expense" />
-            <Route element={<About />} path="/about" />
-          </Routes>
-        </main>
-        <AppFooter />
-      </section>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <section className="main-layout full app">
+          <AppHeader />
+          <main className="main-layout full app">
+            <Routes>
+              <Route element={<HomePage />} path="/" />
+              <Route element={<ExpenseIndex />} path="/expense" />
+              <Route element={<About />} path="/about" />
+            </Routes>
+          </main>
+          <AppFooter />
+          <UserMsg />
+        </section>
+      </Router>
+    </Provider>
   )
 }
 

@@ -6,11 +6,8 @@ export const ADD_EXPENSE = 'ADD_EXPENSE'
 export const UPDATE_EXPENSE = 'UPDATE_EXPENSE'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
 
-export const SET_IS_LOADING = 'SET_IS_LOADING'
-
 const initialState = {
     expenses: [],
-    isLoading: false,
     filterBy: expenseService.getDefaultFilter(),
 }
 
@@ -35,9 +32,6 @@ export function expenseReducer(state = initialState, action = {}) {
 
         case SET_FILTER_BY:
             return { ...state, filterBy: { ...state.filterBy, ...action.filterBy } }
-
-        case SET_IS_LOADING:
-            return { ...state, isLoading: action.isLoading }
 
         default:
             return state
