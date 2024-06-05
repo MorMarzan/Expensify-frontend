@@ -48,6 +48,7 @@ export function AppHeader() {
                     <nav className={"flex app-nav " + mobileNavOpenClass}>
                         <img src={closeIcon} alt="close" className="close" onClick={toggleMobileNav}></img>
                         <NavLink to="/" onClick={toggleMobileNav}>Home</NavLink>
+                        <NavLink to="/expense" onClick={toggleMobileNav}>My Expenses</NavLink>
                         <NavLink to="/about" onClick={toggleMobileNav}>About</NavLink>
                         <SwitchBtn />
                     </nav>
