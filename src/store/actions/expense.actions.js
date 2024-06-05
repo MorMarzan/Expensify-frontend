@@ -56,3 +56,8 @@ export async function saveExpense(expense) {
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
 }
+
+export function resetFilterBy() {
+    const filterBy = expenseService.getDefaultFilter()
+    store.dispatch({ type: SET_FILTER_BY, filterBy })
+}

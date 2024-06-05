@@ -3,9 +3,10 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 // import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'expense'
-const gCategories = ["Food", "Transport", "Utilities", "Entertainment", "Healthcare"]
 
+
+const STORAGE_KEY = 'expense'
+const gExpenseCategories = ["Food", "Transport", "Utilities", "Entertainment", "Healthcare"]
 
 export const expenseService = {
     query,
@@ -13,7 +14,8 @@ export const expenseService = {
     save,
     remove,
     getEmptyExpense,
-    getDefaultFilter
+    getDefaultFilter,
+    gExpenseCategories
 }
 
 _createExpenses()
@@ -24,8 +26,13 @@ async function query(filterBy = { date: '', category: '' }) {
         expenses = expenses.filter(expense => expense.category === filterBy.category)
     }
     if (filterBy.date) {
-        const filterDate = new Date(filterBy.date).getTime()
-        expenses = expenses.filter(expense => expense.date === filterDate)
+        const filterDate = new Date(filterBy.date)
+        filterDate.setHours(0, 0, 0, 0)
+        expenses = expenses.filter(expense => {
+            const expenseDate = new Date(expense.date);
+            expenseDate.setHours(0, 0, 0, 0); // Set to the start of the day
+            return expenseDate.getTime() === filterDate.getTime();
+        })
     }
     return expenses
 }
