@@ -13,8 +13,9 @@ export const expenseService = {
     save,
     remove,
     getEmptyExpense,
+    getDefaultFilter
 }
-window.cs = expenseService
+
 _createExpenses()
 
 async function query(filterBy = { date: '', category: '' }) {
@@ -34,7 +35,6 @@ function getById(expenseId) {
 }
 
 async function remove(expenseId) {
-    // throw new Error('Nope')
     await storageService.remove(STORAGE_KEY, expenseId)
 }
 
@@ -55,6 +55,13 @@ function getEmptyExpense() {
         amount: 0,
         categories: [],
         note: '',
+    }
+}
+
+function getDefaultFilter() {
+    return {
+        date: '',
+        category: '',
     }
 }
 
