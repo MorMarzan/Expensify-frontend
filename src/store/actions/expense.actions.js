@@ -61,3 +61,20 @@ export function resetFilterBy() {
     const filterBy = expenseService.getDefaultFilter()
     store.dispatch({ type: SET_FILTER_BY, filterBy })
 }
+
+export async function getExpenseCategoryMap() {
+    // store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+    try {
+        const expenses = await expenseService.query()
+        return expenses.reduce((acc, expense) => {
+            const currCategory = expense.category
+            acc[currCategory] = acc[currCategory] ? acc[currCategory] + expense.amount : expense.amount
+            return acc
+        }, {})
+    } catch (err) {
+        console.log('expense action -> Cannot load expenses', err)
+        throw err
+    } finally {
+        // store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    }
+}
