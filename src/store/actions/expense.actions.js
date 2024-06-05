@@ -1,12 +1,12 @@
-import { expenseService } from "../../services/expense.local.service.js"
-import { ADD_EXPENSE, REMOVE_EXPENSE, SET_EXPENSES, UPDATE_EXPENSE, SET_FILTER_BY, SET_IS_LOADING } from "../reducers/expense.reducer.js"
+import { expenseService } from "../../services/expense.service.local.js"
+import { ADD_EXPENSE, REMOVE_EXPENSE, SET_EXPENSES, UPDATE_EXPENSE, SET_FILTER_BY } from "../reducers/expense.reducer.js"
 import { store } from "../store.js"
 
 export async function loadExpenses() {
     // store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     const filterBy = store.getState().expenseModule.filterBy
     try {
-        const expenses = await expenseService.query(filterBy, sortBy)
+        const expenses = await expenseService.query(filterBy)
         store.dispatch({ type: SET_EXPENSES, expenses })
     } catch (err) {
         console.log('expense action -> Cannot load expenses', err)
