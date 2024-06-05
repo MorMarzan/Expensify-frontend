@@ -40,7 +40,7 @@ async function remove(expenseId) {
 
 async function save(expense) {
     var savedExpense
-    if (expense._id) {
+    if (expense.__id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
         // Later, owner is set by the backend
@@ -75,7 +75,7 @@ function _createExpenses() {
 function _createDemoExpenses() {
     const expenses = [
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 0, 15).getTime(),  // January 15, 2024
             amount: 50,
             category: "Food",
@@ -83,7 +83,7 @@ function _createDemoExpenses() {
             userId: 1234
         },
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 2, 10).getTime(),  // March 10, 2024
             amount: 20,
             category: "Transport",
@@ -91,7 +91,7 @@ function _createDemoExpenses() {
             userId: 1234
         },
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 4, 25).getTime(),  // May 25, 2024
             amount: 100,
             category: "Utilities",
@@ -99,7 +99,7 @@ function _createDemoExpenses() {
             userId: 1234
         },
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 6, 5).getTime(),  // July 5, 2024
             amount: 30,
             category: "Entertainment",
@@ -107,7 +107,7 @@ function _createDemoExpenses() {
             userId: 1234
         },
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 8, 12).getTime(),  // September 12, 2024
             amount: 75,
             category: "Healthcare",
@@ -115,7 +115,7 @@ function _createDemoExpenses() {
             userId: 1234
         },
         {
-            id: utilService.makeId(),
+            _id: utilService.makeId(),
             date: new Date(2024, 10, 20).getTime(),  // November 20, 2024
             amount: 40,
             category: "Food",
@@ -128,7 +128,7 @@ function _createDemoExpenses() {
 
 function _createExpense(amount = 0, categories = [], note = '') {
     return {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         date: Date.now(),
         amount,
         categories,

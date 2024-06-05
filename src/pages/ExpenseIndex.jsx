@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { loadExpenses } from "../store/actions/expense.actions"
 import { useEffect } from "react"
+import { ExpenseList } from "../cmps/ExpenseList"
 
 export function ExpenseIndex() {
 
@@ -21,8 +22,7 @@ export function ExpenseIndex() {
 
     return (
         <div className="expense-index" style={{ color: 'black' }}>
-            hi from ExpenseInde
-            <pre>{JSON.stringify(expenses, null, 2)}</pre>
+            <ExpenseList expenses={expenses} />
         </div>
     )
 }
