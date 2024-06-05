@@ -47,7 +47,7 @@ async function remove(expenseId) {
 
 async function save(expense) {
     var savedExpense
-    if (expense.__id) {
+    if (expense._id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
         // Later, owner is set by the backend

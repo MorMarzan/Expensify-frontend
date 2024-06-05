@@ -1,7 +1,7 @@
 .expense-list {
 
     .headers {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: $grid-template;
         background-color: var(--clrPrimary2);
     }
 

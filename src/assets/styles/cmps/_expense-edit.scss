@@ -1,0 +1,29 @@
+.expense-edit {
+    position: fixed;
+    background-color: var(--clrSecondary-1);
+    translate: -50% -50%;
+    top: 50%;
+    left: 50%;
+    padding: 40px;
+    display: grid;
+    gap: 15px;
+    border-radius: $border-radius;
+
+    form {
+        display: grid;
+        gap: 15px;
+    }
+
+    .btn {
+        @include btn(secondary-light);
+    }
+
+    .close {
+        cursor: pointer;
+        max-width: 16px;
+        justify-self: end;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+}

@@ -9,6 +9,7 @@ import { ExpenseIndex } from './pages/ExpenseIndex.jsx'
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { ExpenseEdit } from './cmps/ExpenseEdit.jsx'
 
 
 export function App() {
@@ -21,7 +22,10 @@ export function App() {
           <main className="main-layout full app">
             <Routes>
               <Route element={<HomePage />} path="/" />
-              <Route element={<ExpenseIndex />} path="/expense" />
+              <Route element={<ExpenseIndex />} path="/expense" >
+                <Route element={<ExpenseEdit />} path="/expense/edit" />
+                <Route element={<ExpenseEdit />} path="/expense/edit/:expenseId" />
+              </Route>
               <Route element={<About />} path="/about" />
             </Routes>
           </main>
