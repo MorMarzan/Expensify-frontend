@@ -29,8 +29,9 @@
 
 // border 
 $border-radius: 30px;
-// $grid-template: repeat(4, 3fr) 1fr;
+
 $grid-template: 2fr 1fr 2fr 3fr 1fr;
+$grid-template-mobile: 2fr repeat(3, 1fr);
 
 // Breakpoints
 $mobile-breakpoint: 460px;

@@ -7,6 +7,10 @@
         padding-inline: 10px;
         border-top-right-radius: 15px;
         border-top-left-radius: 15px;
+
+        @include for-mobile-layout {
+            grid-template-columns: $grid-template-mobile;
+        }
     }
 
     .content {

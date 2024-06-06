@@ -11,7 +11,7 @@ export function ExpenseList({ expenses, onRemoveExpense }) {
                 <li>Category</li>
                 <li>Amount</li>
                 <li>Date</li>
-                <li>Notes</li>
+                <li className="hide-on-mobile">Notes</li>
                 <li className="actions">Actions</li>
             </ul>
             <ul className="clean-list content">

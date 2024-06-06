@@ -1,6 +1,10 @@
 .expense-preview {
     grid-template-columns: $grid-template;
 
+    @include for-mobile-layout {
+        grid-template-columns: $grid-template-mobile;
+    }
+
     &:hover {
         border-bottom: 1px solid var(--clrPrimary2);
     }
