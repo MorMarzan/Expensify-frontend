@@ -25,22 +25,22 @@ Check out the live version of the app here:
 - **MongoDB** - The database used to store user and expense data.
 - **bcrypt & Cryptr** - for authentication and Security
 
+## 📚 API Documentation
+### Authentication Endpoints
+- POST /api/auth/login - Log in a user.
+- POST /api/auth/logout - Log out the current user.
+- POST /api/auth/signup - Sign up a new user.
+
+### Expense Endpoints
+- GET /api/expense  - Retrieve all expenses for the logged-in user.
+- GET /api/expense/:id - Retrieve a specific expense by ID for the logged-in user.
+- PUT /api/expense/ - Update a specific expense by ID. The request body should include amount and category, with an optional note.
+- DELETE /api/expense/ -  Delete a specific expense by ID.
+- POST /api/expense - Add a new expense. The request body should include amount, category, and an optional note.
+
 ## 🚀 Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-## 📚 API Documentation
-# Authentication Endpoints
-POST /api/auth/login - Log in a user.
-POST /api/auth/logout - Log out the current user.
-POST /api/auth/signup - Sign up a new user.
-
-# Expense Endpoints
-GET /api/expense  - Retrieve all expenses for the logged-in user.
-GET /api/expense/:id - Retrieve a specific expense by ID for the logged-in user.
-PUT /api/expense/ - Update a specific expense by ID. The request body should include amount and category, with an optional note.
-DELETE /api/expense/ -  Delete a specific expense by ID.
-POST /api/expense - Add a new expense. The request body should include amount, category, and an optional note.
 
 ### Prerequisites
 
