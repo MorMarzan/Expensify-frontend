@@ -4,6 +4,7 @@ import { loadExpense, saveExpense } from "../store/actions/expense.actions"
 import { expenseService } from "../services/expense.service.local"
 import { showErrorMsg, showSuccessMsg } from "../store/actions/system.actions"
 import closeIcon from '/images/icon-close.svg'
+import { FormControl, InputLabel, MenuItem, Select, TextField, ThemeProvider, createTheme } from "@mui/material"
 
 export function ExpenseEdit() {
     const navigate = useNavigate()
@@ -47,7 +48,6 @@ export function ExpenseEdit() {
         setExpenseToEdit(prevExpense => ({ ...prevExpense, [field]: value }))
     }
 
-
     async function onSaveExpense(ev) {
         ev.preventDefault()
         try {
@@ -68,17 +68,31 @@ export function ExpenseEdit() {
             <h1>{expenseId ? 'Edit' : 'Add'} Expense</h1>
             <form onSubmit={onSaveExpense}>
 
-                <label htmlFor="amount">Amount</label>
-                <input onChange={handleChange} value={amount || ''} type="number" name="amount" id="amount" />
+                <TextField
+                    label="Amount"
+                    type="number"
+                    name="amount"
+                    value={amount || ''}
+                    onChange={handleChange}
+                    fullWidth
+                />
 
-                <label htmlFor="category">Category</label>
-                <select name="category" id="category" onChange={handleChange} value={category}>
-                    <option value=''>All</option>
-                    {expenseService.gExpenseCategories.map((cat, idx) => <option value={cat} key={idx}>{cat}</option>)}
-                </select>
+                <FormControl fullWidth>
+                    <InputLabel id="category">Category</InputLabel>
+                    <Select
+                        labelId="category"
+                        id="Category"
+                        name="category"
+                        value={category}
+                        label="Category"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value=''>All</MenuItem>
+                        {expenseService.gExpenseCategories.map((cat, idx) => <MenuItem value={cat} key={idx}>{cat}</MenuItem>)}
+                    </Select>
+                </FormControl>
 
-                <label htmlFor="note">Name</label>
-                <textarea onChange={handleChange} value={note} type="text" name="note" id="note" />
+                <TextField id="note" label="Note" value={note} name="note" onChange={handleChange} variant="outlined" autoComplete="off" />
 
                 <button className="btn" disabled={!category || !amount}>Save</button>
             </form>

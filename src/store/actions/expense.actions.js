@@ -20,7 +20,7 @@ export async function loadExpenses() {
 
 export function loadFilteredExpenses() {
     const filterBy = store.getState().expenseModule.filterBy
-    const expenses = JSON.parse(JSON.stringify(store.getState().expenseModule.expenses))
+    let expenses = JSON.parse(JSON.stringify(store.getState().expenseModule.expenses))
 
     if (filterBy.category) {
         expenses = expenses.filter(expense => expense.category === filterBy.category)

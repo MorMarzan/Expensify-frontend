@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react"
 import { expenseService } from "../services/expense.service.local"
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs'
 
 export function ExpenseFilter({ filterBy, onSetFilter, onResetFilter }) {
 
-    const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+    const [filterByToEdit, setFilterByToEdit] = useState({
+        ...filterBy,
+        date: filterBy.date ? dayjs(filterBy.date) : null,
+    })
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
@@ -30,19 +37,38 @@ export function ExpenseFilter({ filterBy, onSetFilter, onResetFilter }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
+    function handleDateChange(newValue) {
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, date: newValue }))
+    }
+
     return (
         <div className="expense-filter">
             <fieldset>
                 <legend>Filter your expenses:</legend>
 
-                <label htmlFor="category">Category</label>
-                <select name="category" id="category" onChange={handleChange} value={filterBy.category}>
-                    <option value=''>All</option>
-                    {expenseService.gExpenseCategories.map((cat, idx) => <option value={cat} key={idx}>{cat}</option>)}
-                </select>
+                <FormControl fullWidth>
+                    <InputLabel id="category">Category</InputLabel>
+                    <Select
+                        labelId="category"
+                        id="Category"
+                        name="category"
+                        value={filterByToEdit.category}
+                        label="Category"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value=''>All</MenuItem>
+                        {expenseService.gExpenseCategories.map((cat, idx) => <MenuItem value={cat} key={idx}>{cat}</MenuItem>)}
+                    </Select>
+                </FormControl>
 
-                <label htmlFor="date">Date</label>
-                <input value={filterBy.date} onChange={handleChange} type="date" id="date" name="date" />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        label="Date"
+                        value={filterByToEdit.date}
+                        name="date"
+                        onChange={handleDateChange}
+                    />
+                </LocalizationProvider>
 
                 <button className="btn reset" onClick={onResetFilter}>Reset</button>
             </fieldset>

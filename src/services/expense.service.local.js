@@ -50,9 +50,8 @@ async function save(expense) {
     if (expense._id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
-        console.log('service', expense)
-        // Later, owner is set by the backend
         // expense.owner = userService.getLoggedinUser()
+        expense.date = Date.now()
         savedExpense = await storageService.post(STORAGE_KEY, expense)
     }
     return savedExpense
@@ -61,7 +60,7 @@ async function save(expense) {
 function getEmptyExpense() {
     return {
         amount: 0,
-        categories: [],
+        category: '',
         note: '',
     }
 }
