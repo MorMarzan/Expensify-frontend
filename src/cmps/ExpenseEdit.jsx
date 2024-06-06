@@ -28,7 +28,6 @@ export function ExpenseEdit() {
         try {
             if (expenseId) {
                 const expenseToEdit = await loadExpense(expenseId)
-                console.log('in edit', expenseToEdit)
                 setExpenseToEdit(expenseToEdit)
             }
         } catch (err) {
@@ -55,7 +54,6 @@ export function ExpenseEdit() {
         }
 
         setExpenseToEdit(prevExpense => ({ ...prevExpense, [field]: value }))
-        console.log(value)
     }
 
     async function onSaveExpense(ev) {

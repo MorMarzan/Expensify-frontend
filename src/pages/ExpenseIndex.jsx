@@ -20,7 +20,7 @@ export function ExpenseIndex() {
         if (user) {
             _loadExpenses()
         } else {
-            resetExpensesBetweenUsers()
+            // resetExpensesBetweenUsers()
             navigate('/')
         }
     }, [filterBy, user])
