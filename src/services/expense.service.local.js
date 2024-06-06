@@ -1,5 +1,6 @@
 
 import { storageService } from './async-storage.service.js'
+import { userService } from './user.service.js'
 import { utilService } from './util.service.js'
 // import { userService } from './user.service.js'
 
@@ -34,6 +35,9 @@ async function query(filterBy = { date: '', category: '' }) {
     //         return expenseDate.getTime() === filterDate.getTime();
     //     })
     // }
+    const currUserId = userService.getLoggedinUser()._id
+    console.log(currUserId)
+    expenses = expenses.filter(expense => expense.userId === currUserId)
     return expenses
 }
 
@@ -111,7 +115,7 @@ function _createDemoExpenses() {
             amount: 30,
             category: "Entertainment",
             note: "Movie ticket",
-            userId: 1234
+            userId: 12345
         },
         {
             _id: utilService.makeId(),
@@ -119,7 +123,7 @@ function _createDemoExpenses() {
             amount: 75,
             category: "Healthcare",
             note: "Doctor's appointment",
-            userId: 1234
+            userId: 12345
         },
         {
             _id: utilService.makeId(),

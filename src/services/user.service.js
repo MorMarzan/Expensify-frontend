@@ -84,7 +84,7 @@ function _createDemoUsers() {
             imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
         },
         {
-            _id: utilService.makeId(),
+            _id: 1234,
             username: 'mor',
             password: 'pass',
             fullname: 'Mor',

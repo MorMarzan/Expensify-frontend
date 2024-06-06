@@ -41,6 +41,7 @@ export function AppHeader() {
 
     function onLogout() {
         logout()
+        setIsLogoutModalOpen(false)
         navigate('/')
     }
 

@@ -5,18 +5,24 @@ import { ExpenseList } from "../cmps/ExpenseList"
 import { ExpenseFilter } from "../cmps/ExpenseFilter"
 import { showErrorMsg, showSuccessMsg } from "../store/actions/system.actions"
 import { PieChart } from "../cmps/PieChart"
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useNavigate } from "react-router-dom"
 
 export function ExpenseIndex() {
 
     const expenses = useSelector(storeState => storeState.expenseModule.filteredExpenses)
     const fullExpenses = useSelector(storeState => storeState.expenseModule.expenses)
     const filterBy = useSelector(storeState => storeState.expenseModule.filterBy)
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const [expenseCategoryMap, setExpenseCategoryMap] = useState({})
+    const navigate = useNavigate()
 
     useEffect(() => {
         _loadExpenses()
     }, [filterBy])
+
+    useEffect(() => {
+        if (!user) navigate('/')
+    }, [user])
 
     useEffect(() => {
         const map = getExpenseCategoryMap()
