@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { expenseService } from "../services/expense.service.local"
+import { expenseService } from "../services/expense.service"
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material"
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

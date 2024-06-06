@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { loadExpense, saveExpense } from "../store/actions/expense.actions"
-import { expenseService } from "../services/expense.service.local"
+import { expenseService } from "../services/expense.service"
 import { showErrorMsg, showSuccessMsg } from "../store/actions/system.actions"
 import closeIcon from '/images/icon-close.svg'
 import { FormControl, InputLabel, MenuItem, Select, TextField, ThemeProvider, createTheme } from "@mui/material"

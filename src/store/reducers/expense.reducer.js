@@ -1,4 +1,4 @@
-import { expenseService } from "../../services/expense.service.local"
+import { expenseService } from "../../services/expense.service"
 
 export const SET_EXPENSES = 'SET_EXPENSES'
 export const REMOVE_EXPENSE = 'REMOVE_EXPENSE'

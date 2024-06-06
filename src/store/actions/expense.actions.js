@@ -1,4 +1,4 @@
-import { expenseService } from "../../services/expense.service.local.js"
+import { expenseService } from "../../services/expense.service"
 import { ADD_EXPENSE, REMOVE_EXPENSE, SET_EXPENSES, UPDATE_EXPENSE, SET_FILTER_BY, SET_FILTERED_EXPENSE } from "../reducers/expense.reducer.js"
 import { store } from "../store.js"
 
