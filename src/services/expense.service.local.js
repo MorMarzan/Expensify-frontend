@@ -54,7 +54,7 @@ async function save(expense) {
     if (expense._id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
-        // expense.owner = userService.getLoggedinUser()
+        expense.userId = userService.getLoggedinUser()
         expense.date = Date.now()
         savedExpense = await storageService.post(STORAGE_KEY, expense)
     }
