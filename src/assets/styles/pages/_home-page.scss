@@ -12,11 +12,6 @@
                 justify-self: center;
                 align-self: center;
             }
-
-            @include for-wide-layout {
-                text-align: unset;
-
-            }
         }
     }
 
