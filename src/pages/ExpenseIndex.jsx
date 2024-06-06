@@ -5,7 +5,6 @@ import { ExpenseList } from "../cmps/ExpenseList"
 import { ExpenseFilter } from "../cmps/ExpenseFilter"
 import { showErrorMsg, showSuccessMsg } from "../store/actions/system.actions"
 import { PieChart } from "../cmps/PieChart"
-import { ExpenseEdit } from "../cmps/ExpenseEdit"
 import { Link, Outlet } from "react-router-dom"
 
 export function ExpenseIndex() {

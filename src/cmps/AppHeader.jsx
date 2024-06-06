@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 
 import hamburger from '/images/icon-hamburger.svg'
 import closeIcon from '/images/icon-close.svg'
 import { SwitchBtn } from "./SwitchBtn"
 import { Logo } from "./Logo"
+import { useSelector } from "react-redux"
+import { logout } from "../store/actions/user.actions"
 
 export function AppHeader() {
 
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileNavOpen, seIsMobileNavOpen] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth < 730)
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+    const navigate = useNavigate()
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
@@ -34,6 +38,11 @@ export function AppHeader() {
         seIsMobileNavOpen(currOpenStatus => !currOpenStatus)
     }
 
+    function onLogout() {
+        logout()
+        navigate('/')
+    }
+
     const headerScrolledClass = isScrolled ? 'scrolled' : ''
     const mobileNavOpenClass = isMobile && isMobileNavOpen ? 'open' : ''
 
@@ -48,11 +57,17 @@ export function AppHeader() {
                     <nav className={"flex app-nav " + mobileNavOpenClass}>
                         <img src={closeIcon} alt="close" className="close" onClick={toggleMobileNav}></img>
                         <NavLink to="/" onClick={toggleMobileNav}>Home</NavLink>
-                        <NavLink to="/expense" onClick={toggleMobileNav}>My Expenses</NavLink>
+                        {user && <NavLink to="/expense" onClick={toggleMobileNav}>My Expenses</NavLink>}
                         <NavLink to="/about" onClick={toggleMobileNav}>About</NavLink>
                         <SwitchBtn />
                     </nav>
                 </div>
+                {user &&
+                    <div className="user">
+                        <img src={user.imgUrl} style={{ width: '100px' }}></img>
+                        <button className="btn" onClick={onLogout}>Logout</button>
+                    </div>
+                }
 
             </header>
         </>
