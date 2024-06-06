@@ -61,19 +61,20 @@ export function AppHeader() {
                         <NavLink to="/" onClick={toggleMobileNav}>Home</NavLink>
                         {user && <NavLink to="/expense" onClick={toggleMobileNav}>My Expenses</NavLink>}
                         <NavLink to="/about" onClick={toggleMobileNav}>About</NavLink>
-                        <SwitchBtn />
-                    </nav>
-                    {user &&
-                        <div className="user flex">
-                            <div className="img-wrapper" style={{ backgroundImage: `url(${user.imgUrl})` }} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></div>
-                            {/* <img src={user.imgUrl} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></img> */}
-                            {isLogoutModalOpen &&
-                                <div className="logout-modal">
-                                    <a className="" onClick={onLogout}>Logout?</a>
+                        <div className="grid cols actions">
+                            <SwitchBtn />
+                            {user &&
+                                <div className="user flex">
+                                    <div className="img-wrapper" style={{ backgroundImage: `url(${user.imgUrl})` }} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></div>
+                                    {isLogoutModalOpen &&
+                                        <div className="logout-modal">
+                                            <a className="" onClick={onLogout}>Logout?</a>
+                                        </div>
+                                    }
                                 </div>
                             }
                         </div>
-                    }
+                    </nav>
                 </div>
 
 

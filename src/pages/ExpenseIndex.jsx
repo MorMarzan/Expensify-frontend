@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux"
-import { getExpenseCategoryMap, loadExpenses, removeExpense, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
 import { useEffect, useState } from "react"
+import { PieChart } from "../cmps/PieChart"
+import { Link, Outlet, useNavigate } from "react-router-dom"
+
+import { getExpenseCategoryMap, loadExpenses, removeExpense, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
 import { ExpenseList } from "../cmps/ExpenseList"
 import { ExpenseFilter } from "../cmps/ExpenseFilter"
 import { showErrorMsg, showSuccessMsg } from "../store/actions/system.actions"
-import { PieChart } from "../cmps/PieChart"
-import { Link, Outlet, useNavigate } from "react-router-dom"
 
 export function ExpenseIndex() {
 
@@ -20,7 +21,6 @@ export function ExpenseIndex() {
         if (user) {
             _loadExpenses()
         } else {
-            // resetExpensesBetweenUsers()
             navigate('/')
         }
     }, [filterBy, user])
