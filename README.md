@@ -89,6 +89,3 @@ For any queries, you can reach us at mormarzan@gmail.com
 
 ### 📝 License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-### 🤝 Contributing
-Contributions are what make the open source community such a fantastic place to learn, inspire, and create. Any contributions you make are greatly appreciated.
