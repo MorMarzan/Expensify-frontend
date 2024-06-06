@@ -1,4 +1,7 @@
 .expense-preview {
     grid-template-columns: $grid-template;
 
+    &:hover {
+        border-bottom: 1px solid var(--clrPrimary2);
+    }
 }

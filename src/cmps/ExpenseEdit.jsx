@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { loadExpense, saveExpense } from "../store/actions/expense.actions"
 import { expenseService } from "../services/expense.service.local"
@@ -8,12 +8,21 @@ import { FormControl, InputLabel, MenuItem, Select, TextField, ThemeProvider, cr
 
 export function ExpenseEdit() {
     const navigate = useNavigate()
+    const cmpRef = useRef(null)
     const { expenseId } = useParams()
     const [expenseToEdit, setExpenseToEdit] = useState(expenseService.getEmptyExpense())
 
     useEffect(() => {
         _loadExpense()
     }, [expenseId])
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutsideSearch)
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutsideSearch)
+        }
+    }, [])
 
     async function _loadExpense() {
         try {
@@ -60,10 +69,17 @@ export function ExpenseEdit() {
         }
     }
 
+    function handleClickOutsideSearch(event) {
+        if (cmpRef.current
+            && !cmpRef.current.contains(event.target)) {
+            navigate('/expense')
+        }
+    }
+
     const { amount, category, note } = expenseToEdit
 
     return (
-        <section className="expense-edit">
+        <section className="expense-edit" ref={cmpRef}>
             <Link to={'/expense'} className="close"><img src={closeIcon} alt="close"></img></Link>
             <h1>{expenseId ? 'Edit' : 'Add'} Expense</h1>
             <form onSubmit={onSaveExpense}>
@@ -94,7 +110,7 @@ export function ExpenseEdit() {
 
                 <TextField id="note" label="Note" value={note} name="note" onChange={handleChange} variant="outlined" autoComplete="off" />
 
-                <button className="btn" disabled={!category || !amount}>Save</button>
+                <button className={`btn ${!category || !amount ? 'disabled' : ''}`} disabled={!category || !amount}>Save</button>
             </form>
 
         </section>

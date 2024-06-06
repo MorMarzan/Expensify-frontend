@@ -3,6 +3,22 @@
     .headers {
         grid-template-columns: $grid-template;
         background-color: var(--clrPrimary2);
+        padding-block: 15px;
+        padding-inline: 10px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+    }
+
+    .content {
+        border: 1px var(--clrPrimary2) solid;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        padding: 10px;
+    }
+
+    .actions {
+        justify-self: end;
+        gap: 10px;
     }
 
     .remove {

@@ -7,7 +7,7 @@ export default function ExpensePreview({ expense }) {
             <div>{category}</div>
             <div>{amount}$</div>
             <div>{utilService.formatTimestamp(date)}</div>
-            <div>{note}</div>
+            <div className="ellipses-overflow">{note}</div>
         </>
     )
 }

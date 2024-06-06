@@ -67,7 +67,7 @@ function getEmptyExpense() {
 
 function getDefaultFilter() {
     return {
-        date: '',
+        date: null,
         category: '',
     }
 }

@@ -41,6 +41,11 @@ export function ExpenseFilter({ filterBy, onSetFilter, onResetFilter }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, date: newValue }))
     }
 
+    function _onResetFilter() {
+        onResetFilter()
+        setFilterByToEdit(expenseService.getDefaultFilter())
+    }
+
     return (
         <div className="expense-filter">
             <fieldset>
@@ -70,7 +75,7 @@ export function ExpenseFilter({ filterBy, onSetFilter, onResetFilter }) {
                     />
                 </LocalizationProvider>
 
-                <button className="btn reset" onClick={onResetFilter}>Reset</button>
+                <button className="btn reset" onClick={_onResetFilter}>Reset</button>
             </fieldset>
         </div>
     )

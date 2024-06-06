@@ -43,16 +43,6 @@ export function ExpenseIndex() {
         }
     }
 
-    // async function _getExpenseCategoryMap() {
-    //     try {
-    //         const map = await getExpenseCategoryMap()
-    //         setExpenseCategoryMap(map)
-    //     } catch (error) {
-    //         console.error('Error loading expenses:', error)
-    //         showErrorMsg('Cannot show expenses')
-    //     }
-    // }
-
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
     }
@@ -64,7 +54,7 @@ export function ExpenseIndex() {
     return (
         <div className="expense-index full main-layout">
             <ExpenseFilter filterBy={filterBy} onSetFilter={onSetFilter} onResetFilter={onResetFilter} />
-            <Link to="/expense/edit" className="btn">Add Expense</Link>
+            <Link to="/expense/edit" className="btn add">Add Expense</Link>
             <ExpenseList expenses={expenses} onRemoveExpense={onRemoveExpense} />
             <PieChart chartInfo={expenseCategoryMap} />
             <Outlet />
