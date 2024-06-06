@@ -58,6 +58,8 @@ h3 {
 
 h4 {
     font-size: em(32px, 15px);
+    line-height: 1.2;
+    ;
 
     @include for-wide-layout {
         font-size: em(48px, 15px);
