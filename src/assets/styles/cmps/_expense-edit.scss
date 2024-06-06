@@ -8,9 +8,9 @@
     display: grid;
     gap: 15px;
     border-radius: $border-radius;
+    z-index: 15;
 
     @include for-mobile-layout {
-        z-index: 15;
         width: 100%;
         height: 80%;
     }
