@@ -1,4 +1,4 @@
-import { Route, Routes, HashRouter as Router } from 'react-router-dom'
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom'
 import './assets/styles/main.scss'
 
 import { AppHeader } from './cmps/AppHeader.jsx'
