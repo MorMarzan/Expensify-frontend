@@ -65,7 +65,8 @@ export function AppHeader() {
                     </nav>
                     {user &&
                         <div className="user flex">
-                            <img src={user.imgUrl} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></img>
+                            <div className="img-wrapper" style={{ backgroundImage: `url(${user.imgUrl})` }} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></div>
+                            {/* <img src={user.imgUrl} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></img> */}
                             {isLogoutModalOpen &&
                                 <div className="logout-modal">
                                     <a className="" onClick={onLogout}>Logout?</a>
