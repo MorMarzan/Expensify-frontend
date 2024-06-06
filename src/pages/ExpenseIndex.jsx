@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { getExpenseCategoryMap, loadExpenses, removeExpense, resetExpensesBetweenUsers, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
+import { getExpenseCategoryMap, loadExpenses, removeExpense, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
 import { useEffect, useState } from "react"
 import { ExpenseList } from "../cmps/ExpenseList"
 import { ExpenseFilter } from "../cmps/ExpenseFilter"
@@ -67,7 +67,7 @@ export function ExpenseIndex() {
                     <PieChart chartInfo={expenseCategoryMap} />
                 </>
                 :
-                <h4>You havent uploaded any expense yet. <br></br>The best time for change is now</h4>
+                <h4>You haven't uploaded any expenses yet.<br></br> Go ahead and start!</h4>
             }
             <Outlet />
         </div>

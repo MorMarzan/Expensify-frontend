@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { ExpenseEdit } from './cmps/ExpenseEdit.jsx'
 import { ThemeProvider, createTheme } from '@mui/material'
+import { Loader } from './cmps/Loader.jsx'
 
 const theme = createTheme({
   palette: {
@@ -95,6 +96,7 @@ export function App() {
             </main>
             <AppFooter />
             <UserMsg />
+            <Loader />
           </section>
         </Router>
 
