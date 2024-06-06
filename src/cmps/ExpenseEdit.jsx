@@ -16,13 +16,13 @@ export function ExpenseEdit() {
         _loadExpense()
     }, [expenseId])
 
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutsideSearch)
+    // useEffect(() => {
+    //     document.addEventListener('mousedown', handleClickOutsideSearch)
 
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutsideSearch)
-        }
-    }, [])
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutsideSearch)
+    //     }
+    // }, [])
 
     async function _loadExpense() {
         try {
@@ -55,6 +55,7 @@ export function ExpenseEdit() {
         }
 
         setExpenseToEdit(prevExpense => ({ ...prevExpense, [field]: value }))
+        console.log(value)
     }
 
     async function onSaveExpense(ev) {
@@ -64,17 +65,16 @@ export function ExpenseEdit() {
             showSuccessMsg(`Expense of ${savedExpense.amount}$ updated successfully`)
             navigate('/expense')
         } catch (err) {
-            console.log('Cannot update expense', err)
             showErrorMsg('Cannot update expense')
         }
     }
 
-    function handleClickOutsideSearch(event) {
-        if (cmpRef.current
-            && !cmpRef.current.contains(event.target)) {
-            navigate('/expense')
-        }
-    }
+    // function handleClickOutsideSearch(event) {
+    //     if (cmpRef.current
+    //         && !cmpRef.current.contains(event.target)) {
+    //         navigate('/expense')
+    //     }
+    // }
 
     const { amount, category, note } = expenseToEdit
 
@@ -102,9 +102,10 @@ export function ExpenseEdit() {
                         value={category}
                         label="Category"
                         onChange={handleChange}
+
                     >
-                        <MenuItem value=''>All</MenuItem>
-                        {expenseService.gExpenseCategories.map((cat, idx) => <MenuItem value={cat} key={idx}>{cat}</MenuItem>)}
+                        <MenuItem value='' onClick={(ev) => ev.stopPropagation()}>All</MenuItem>
+                        {expenseService.gExpenseCategories.map((cat, idx) => <MenuItem value={cat} key={idx} onClick={(ev) => ev.stopPropagation()}>{cat}</MenuItem>)}
                     </Select>
                 </FormControl>
 

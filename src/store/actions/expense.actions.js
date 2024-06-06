@@ -18,6 +18,11 @@ export async function loadExpenses() {
     }
 }
 
+export function resetExpensesBetweenUsers() {
+    store.dispatch({ type: SET_EXPENSES, expenses: [] })
+    loadFilteredExpenses()
+}
+
 export function loadFilteredExpenses() {
     const filterBy = store.getState().expenseModule.filterBy
     let expenses = JSON.parse(JSON.stringify(store.getState().expenseModule.expenses))

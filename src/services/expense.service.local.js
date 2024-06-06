@@ -21,22 +21,9 @@ export const expenseService = {
 
 _createExpenses()
 
-async function query(filterBy = { date: '', category: '' }) {
+async function query() {
     var expenses = await storageService.query(STORAGE_KEY)
-    // if (filterBy.category) {
-    //     expenses = expenses.filter(expense => expense.category === filterBy.category)
-    // }
-    // if (filterBy.date) {
-    //     const filterDate = new Date(filterBy.date)
-    //     filterDate.setHours(0, 0, 0, 0)
-    //     expenses = expenses.filter(expense => {
-    //         const expenseDate = new Date(expense.date);
-    //         expenseDate.setHours(0, 0, 0, 0); // Set to the start of the day
-    //         return expenseDate.getTime() === filterDate.getTime();
-    //     })
-    // }
     const currUserId = userService.getLoggedinUser()._id
-    console.log(currUserId)
     expenses = expenses.filter(expense => expense.userId === currUserId)
     return expenses
 }
@@ -54,7 +41,7 @@ async function save(expense) {
     if (expense._id) {
         savedExpense = await storageService.put(STORAGE_KEY, expense)
     } else {
-        expense.userId = userService.getLoggedinUser()
+        expense.userId = userService.getLoggedinUser()._id
         expense.date = Date.now()
         savedExpense = await storageService.post(STORAGE_KEY, expense)
     }

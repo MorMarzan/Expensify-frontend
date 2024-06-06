@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { getExpenseCategoryMap, loadExpenses, removeExpense, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
+import { getExpenseCategoryMap, loadExpenses, removeExpense, resetExpensesBetweenUsers, resetFilterBy, setFilterBy } from "../store/actions/expense.actions"
 import { useEffect, useState } from "react"
 import { ExpenseList } from "../cmps/ExpenseList"
 import { ExpenseFilter } from "../cmps/ExpenseFilter"
@@ -17,12 +17,13 @@ export function ExpenseIndex() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        _loadExpenses()
-    }, [filterBy])
-
-    useEffect(() => {
-        if (!user) navigate('/')
-    }, [user])
+        if (user) {
+            _loadExpenses()
+        } else {
+            resetExpensesBetweenUsers()
+            navigate('/')
+        }
+    }, [filterBy, user])
 
     useEffect(() => {
         const map = getExpenseCategoryMap()
@@ -60,8 +61,14 @@ export function ExpenseIndex() {
         <div className="expense-index full main-layout">
             <ExpenseFilter filterBy={filterBy} onSetFilter={onSetFilter} onResetFilter={onResetFilter} />
             <Link to="/expense/edit" className="btn add">Add Expense</Link>
-            <ExpenseList expenses={expenses} onRemoveExpense={onRemoveExpense} />
-            <PieChart chartInfo={expenseCategoryMap} />
+            {fullExpenses && fullExpenses.length && user ?
+                <>
+                    <ExpenseList expenses={expenses} onRemoveExpense={onRemoveExpense} />
+                    <PieChart chartInfo={expenseCategoryMap} />
+                </>
+                :
+                <h4>You havent uploaded any expense yet. <br></br>The best time for change is now</h4>
+            }
             <Outlet />
         </div>
     )
