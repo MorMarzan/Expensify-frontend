@@ -1,4 +1,4 @@
-import { SET_MSG, SET_IS_LOADING } from '../reducers/system.reducer.js'
+import { SET_MSG, SET_IS_LOADING, SET_THEME } from '../reducers/system.reducer.js'
 import { store } from '../store'
 
 // Loading
@@ -18,3 +18,9 @@ export function showErrorMsg(txt) {
 export function setMsg(msg) {
     store.dispatch({ type: SET_MSG, msg })
 }
+
+//theme
+export function setTheme(theme) {
+    store.dispatch({ type: SET_THEME, theme })
+}
+
