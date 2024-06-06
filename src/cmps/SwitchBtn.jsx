@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons'
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { setTheme } from "../store/actions/system.actions"
 
 export function SwitchBtn() {
-    // const [theme, setTheme] = useState('dark')
     const theme = useSelector(storeState => storeState.systemModule.theme)
 
     useEffect(() => {
