@@ -1,9 +1,7 @@
-import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-import { utilService } from './util.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
-const STORAGE_KEY = 'user'
+const AUTH_BASE_URL = 'auth/'
 
 export const userService = {
     login,
@@ -11,42 +9,31 @@ export const userService = {
     signup,
     getLoggedinUser,
     saveLocalUser,
-    update,
     getEmptyCredentials
 }
 
-_createUsers()
-
-async function update({ _id, score }) {
-    const user = await storageService.get('user', _id)
-    // user.score = score
-    await storageService.put('user', user)
-
-    // const user = await httpService.put(`user/${_id}`, {_id, score})
-
-    // When admin updates other user's details, do not update loggedinUser
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
-    return user
-}
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
-    if (user) return saveLocalUser(user)
-    else throw new Error('User name or password incorrect')
+    try {
+        const user = await httpService.post(AUTH_BASE_URL + 'login', userCred)
+        if (user) return saveLocalUser(user)
+    } catch (err) {
+        throw new Error(err.message || 'An err occurred during login')
+    }
 }
 
 async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
-    return saveLocalUser(user)
+    try {
+        const user = await httpService.post(AUTH_BASE_URL + 'signup', userCred)
+        return saveLocalUser(user)
+    } catch (err) {
+        throw new Error(err.message || 'An err occurred during signup')
+    }
 }
 
 async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
-    // return await httpService.post('auth/logout')
+    return await httpService.post(AUTH_BASE_URL + '/logout')
 }
 
 function saveLocalUser(user) {
@@ -66,39 +53,3 @@ function getEmptyCredentials() {
         fullname: ''
     }
 }
-
-function _createUsers() {
-    let users = utilService.loadFromStorage(STORAGE_KEY)
-    if (!users || !users.length) {
-        _createDemoUsers()
-    }
-}
-
-function _createDemoUsers() {
-    const users = [
-        {
-            _id: utilService.makeId(),
-            username: 'john',
-            password: 'pass',
-            fullname: 'John Doe',
-            imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-        },
-        {
-            _id: 1234,
-            username: 'mor',
-            password: 'pass',
-            fullname: 'Mor',
-            imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-
-        },
-        {
-            _id: utilService.makeId(),
-            username: 'tal',
-            password: 'pass',
-            fullname: 'Tal',
-            imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-        },
-    ]
-    utilService.saveToStorage(STORAGE_KEY, users)
-}
-
