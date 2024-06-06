@@ -12,6 +12,7 @@ export function AppHeader() {
 
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileNavOpen, seIsMobileNavOpen] = useState(false)
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth < 730)
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const navigate = useNavigate()
@@ -61,13 +62,18 @@ export function AppHeader() {
                         <NavLink to="/about" onClick={toggleMobileNav}>About</NavLink>
                         <SwitchBtn />
                     </nav>
+                    {user &&
+                        <div className="user flex">
+                            <img src={user.imgUrl} onClick={() => setIsLogoutModalOpen(!isLogoutModalOpen)}></img>
+                            {isLogoutModalOpen &&
+                                <div className="logout-modal">
+                                    <a className="" onClick={onLogout}>Logout?</a>
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
-                {user &&
-                    <div className="user">
-                        <img src={user.imgUrl} style={{ width: '100px' }}></img>
-                        <button className="btn" onClick={onLogout}>Logout</button>
-                    </div>
-                }
+
 
             </header>
         </>

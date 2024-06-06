@@ -32,7 +32,7 @@ export function LoginSignup() {
     }
 
     return (
-        <div className="login-page">
+        <div className="login-signup">
             <LoginForm
                 onLogin={onLogin}
                 isSignup={isSignup}
@@ -41,7 +41,7 @@ export function LoginSignup() {
                 <a href="#" onClick={() => setIsSignUp(!isSignup)}>
                     {isSignup ?
                         'Already a member? Login' :
-                        'New user? Signup here'
+                        'New user? Signup'
                     }
                 </a >
             </div>

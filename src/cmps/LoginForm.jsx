@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { userService } from "../services/user.service.js"
+import { TextField } from "@mui/material"
 
 export function LoginForm({ onLogin, isSignup }) {
 
@@ -16,34 +17,38 @@ export function LoginForm({ onLogin, isSignup }) {
     }
 
     return (
-        <form className="login-form flex align-center gap" onSubmit={handleSubmit}>
-            <input
+        <form className="login-form grid" onSubmit={handleSubmit} autoComplete="off">
+
+            <TextField
+                label="Username"
                 type="text"
                 name="username"
                 value={credentials.username}
-                placeholder="Username"
                 onChange={handleChange}
-                required
-                autoFocus
+                fullWidth
+                autoComplete="off"
             />
-            <input
+            <TextField
+                label="Password"
                 type="password"
                 name="password"
                 value={credentials.password}
-                placeholder="Password"
                 onChange={handleChange}
-                required
+                fullWidth
                 autoComplete="off"
             />
-            {isSignup && <input
-                type="text"
-                name="fullname"
-                value={credentials.fullname}
-                placeholder="Full name"
-                onChange={handleChange}
-                required
-            />}
-            <button>{isSignup ? 'Signup' : 'Login'}</button>
+            {isSignup &&
+                <TextField
+                    label="Full name"
+                    type="text"
+                    name="fullname"
+                    value={credentials.fullname}
+                    onChange={handleChange}
+                    fullWidth
+                    autoComplete="off"
+                />
+            }
+            <button className="btn">{isSignup ? 'Signup' : 'Login'}</button>
         </form>
     )
 }

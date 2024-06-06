@@ -4,9 +4,14 @@
         background-color: var(--clrPrimary1);
 
         .section-container {
-            display: grid;
             text-align: center;
             padding-block: 30px;
+            gap: 10px;
+
+            .start {
+                justify-self: center;
+                align-self: center;
+            }
 
             @include for-wide-layout {
                 text-align: unset;
